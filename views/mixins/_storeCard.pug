@@ -3,7 +3,7 @@ mixin storeCard(store = {})
     .store__hero
       .store__actions
         .store__action.store__actions--edit
-          a(href=`/stores/${store._id}/edit`)
+          a(href=`/store/${store._id}/edit`)
             != h.icon('pencil')
       img(src=`/uploads/${store.photo || 'store.png'}`)
       h2.title
