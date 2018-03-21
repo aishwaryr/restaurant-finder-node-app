@@ -1,12 +1,12 @@
 ## To start
 
-npm install
+npm install<br />
 npm start
 
 ## Requirements
 
-Node 6 +
-Mongo 3 +
+Node 7.6 + (for async-await)<br />
+Mongo 3.4 +
 
 ## Sample Data
 
