@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .inner
+    h2 Edit Your Account
+    form(action="/account" method="POST")
+      label(for="name") Name
+      //- user is passed to all templates + all requests via locals; see app.js
+      input(type="text" name="name" value=user.name)
+      label(for="email") Email Address
+      input(type="email" name="email" value=user.email)
+      input.button(type="submit", value="Update My Account")

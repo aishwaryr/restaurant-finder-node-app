@@ -19,7 +19,9 @@ const userSchema = new Schema({
     type: String,
     trim: true,
     required: "Please supply a name"
-  }
+  },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 });
 
 // Virtual field for gravatar
