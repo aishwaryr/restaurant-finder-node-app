@@ -46,6 +46,7 @@ exports.resize = async (req, res, next) => {
 };
 
 exports.createStore = async (req, res) => {
+  req.body.author = req.user._id;
   const store = await new Store(req.body).save();
   // await store.save();
   // console.log("It saved");
@@ -63,12 +64,18 @@ exports.getStores = async (req, res) => {
   });
 };
 
+const confirmOwner = (store, user) => {
+  if (!store.author.equals(user._id)) {
+    throw Error("You must own a store in order to edit it!");
+  }
+};
+
 exports.editStore = async (req, res) => {
   // 1. Find the store given the ID
   const store = await Store.findOne({ _id: req.params.id });
   // res.json(store);
   // 2. confirm they are the owner of the store
-  // TODO
+  confirmOwner(store, req.user);
   // 3. Render out the edit form so user can update their store
   res.render("editStore", { title: `Edit ${store.name}`, store });
 };
@@ -92,7 +99,7 @@ exports.updateStore = async (req, res) => {
 };
 
 exports.getStoreBySlug = async (req, res) => {
-  const store = await Store.findOne({ slug: req.params.slug });
+  const store = await Store.findOne({ slug: req.params.slug }).populate("author");
   // if store not found then pass to next middleware which is NotFound
   if (!store) return next();
   res.render("store", { store, title: store.name });
