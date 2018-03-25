@@ -19,7 +19,7 @@ exports.validateRegister = (req, res, next) => {
   req.sanitizeBody("email").normalizeEmail({
     gmail_remove_dots: false,
     remove_extension: false,
-    gmail_remove_subaddress: false
+    gmail_remove_subaddress: false,
   });
   req.checkBody("password", "Password Field cannot be Blank!").notEmpty();
   req.checkBody("password-confirm", "Confirm Password Field cannot be Blank!").notEmpty();
@@ -50,7 +50,7 @@ exports.updateAccount = async (req, res) => {
   // uodated data
   const updates = {
     name: req.body.name,
-    email: req.body.email
+    email: req.body.email,
   };
   // find the right the user and update
   const user = await User.findOneAndUpdate(

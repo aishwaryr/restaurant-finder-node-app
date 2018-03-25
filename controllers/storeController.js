@@ -14,7 +14,7 @@ const multerOptions = {
     } else {
       next({ message: "That filetype isn't allowed!" }, false);
     }
-  }
+  },
 };
 
 exports.homepage = (req, res) => {
@@ -23,7 +23,7 @@ exports.homepage = (req, res) => {
 
 exports.addStore = (req, res) => {
   res.render("editStore", {
-    title: "Add Store"
+    title: "Add Store",
   });
 };
 
@@ -32,7 +32,7 @@ exports.upload = multer(multerOptions).single("photo");
 exports.resize = async (req, res, next) => {
   // check if there is no new file to resize
   if (!req.file) {
-    next(); //skip to nxt middleware
+    next(); // skip to nxt middleware
     return;
   }
   const extension = req.file.mimetype.split("/")[1];
@@ -60,7 +60,7 @@ exports.getStores = async (req, res) => {
   // console.log(Store);
   res.render("stores", {
     title: "Stores",
-    stores
+    stores,
   });
 };
 
@@ -88,7 +88,7 @@ exports.updateStore = async (req, res) => {
   // findOneAndUpdate takes in query, data & some options
   const store = await Store.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true, // return the new updated store instead of old one
-    runValidators: true // forces the validations defined in Schema to run again on new data (by default they run only once in the begining)
+    runValidators: true, // forces the validations defined in Schema to run again on new data (by default they run only once in the begining)
   }).exec();
   // Redirect them to the store and tell them it worked
   req.flash(
@@ -98,7 +98,7 @@ exports.updateStore = async (req, res) => {
   res.redirect(`/stores/${store._id}/edit`);
 };
 
-exports.getStoreBySlug = async (req, res) => {
+exports.getStoreBySlug = async (req, res, next) => {
   const store = await Store.findOne({ slug: req.params.slug }).populate("author");
   // if store not found then pass to next middleware which is NotFound
   if (!store) return next();
@@ -120,16 +120,16 @@ exports.searchStores = async (req, res) => {
     .find(
       {
         $text: {
-          $search: req.query.q
-        }
+          $search: req.query.q,
+        },
       },
       {
-        score: { $meta: "textScore" }
+        score: { $meta: "textScore" },
       }
     )
     // then sort them
     .sort({
-      score: { $meta: "textScore" }
+      score: { $meta: "textScore" },
     })
     // limit to only 5 results
     .limit(5);

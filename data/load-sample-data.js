@@ -1,4 +1,4 @@
-require("dotenv").config({ path: __dirname + "/../variables.env" });
+require("dotenv").config({ path: `${__dirname}/../variables.env` });
 const fs = require("fs");
 
 const mongoose = require("mongoose");
@@ -10,9 +10,9 @@ const Store = require("../models/Store");
 // const Review = require('../models/Review');
 const User = require("../models/User");
 
-const stores = JSON.parse(fs.readFileSync(__dirname + "/stores.json", "utf-8"));
+const stores = JSON.parse(fs.readFileSync(`${__dirname}/stores.json`, "utf-8"));
 // const reviews = JSON.parse(fs.readFileSync(__dirname + '/reviews.json', 'utf-8'));
-const users = JSON.parse(fs.readFileSync(__dirname + "/users.json", "utf-8"));
+const users = JSON.parse(fs.readFileSync(`${__dirname}/users.json`, "utf-8"));
 
 async function deleteData() {
   console.log("😢😢 Goodbye Data...");

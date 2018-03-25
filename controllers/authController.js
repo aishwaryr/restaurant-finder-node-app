@@ -9,7 +9,7 @@ exports.login = passport.authenticate("local", {
   failureRedirect: "/login",
   failureFlash: "Failed Login",
   successRedirect: "/",
-  successFlash: "You are now logged in!"
+  successFlash: "You are now logged in!",
 });
 
 exports.logout = (req, res) => {
@@ -19,7 +19,7 @@ exports.logout = (req, res) => {
 };
 
 exports.isLoggedIn = (req, res, next) => {
-  //first check if the user is authenticated
+  // first check if the user is authenticated
   if (req.isAuthenticated()) {
     next(); // carry on! They are logged in!
     return;
@@ -45,7 +45,7 @@ exports.forgot = async (req, res) => {
     user,
     subject: "Password Reset",
     resetURL,
-    filename: "password-reset"
+    filename: "password-reset",
   });
   req.flash("success", `You have been mailed a password reset link.`);
   // 4. redirect to login page
@@ -56,7 +56,7 @@ exports.reset = async (req, res) => {
   // check for token and it's expired or not
   const user = await User.findOne({
     resetPasswordToken: req.params.token,
-    resetPasswordExpires: { $gt: Date.now() }
+    resetPasswordExpires: { $gt: Date.now() },
   });
   if (!user) {
     req.flash("error", "Password reset request is invalid or has expired");
@@ -78,7 +78,7 @@ exports.confirmedPasswords = (req, res, next) => {
 exports.update = async (req, res) => {
   const user = await User.findOne({
     resetPasswordToken: req.params.token,
-    resetPasswordExpires: { $gt: Date.now() }
+    resetPasswordExpires: { $gt: Date.now() },
   });
   if (!user) {
     req.flash("error", "Password reset request is invalid or has expired");

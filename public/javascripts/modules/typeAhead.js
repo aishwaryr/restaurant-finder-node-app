@@ -3,13 +3,13 @@ import dompurify from "dompurify";
 
 function searchResultsHTML(stores) {
   return stores
-    .map(store => {
-      return `
+    .map(
+      store => `
       <a href="/store/${store.slug}" class="search__result">
         <strong>${store.name}</strong>
       </a>
-    `;
-    })
+    `
+    )
     .join("");
 }
 

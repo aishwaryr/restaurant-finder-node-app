@@ -13,15 +13,15 @@ const userSchema = new Schema({
     lowercase: true,
     trim: true,
     validate: [validator.isEmail, "Invalid Email Address"],
-    required: "Please supply an email address"
+    required: "Please supply an email address",
   },
   name: {
     type: String,
     trim: true,
-    required: "Please supply a name"
+    required: "Please supply a name",
   },
   resetPasswordToken: String,
-  resetPasswordExpires: Date
+  resetPasswordExpires: Date,
 });
 
 // Virtual field for gravatar
