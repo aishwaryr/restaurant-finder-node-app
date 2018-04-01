@@ -1,4 +1,10 @@
 extends layout
 
 block content
-  h2 It's coming
+  .inner
+    h2= title
+    .map
+      .autocomplete
+        input.autocomplete__input(type="text" placeholder="Search for Anything" name="geolocate")
+      #map
+        p Loading Map...
