@@ -116,7 +116,7 @@ exports.getStoresByTag = async (req, res) => {
   const storesPromise = Store.find({ tags: tagQuery });
   const [tags, stores] = await Promise.all([tagsPromise, storesPromise]);
 
-  res.render("tag", { tags, title: "Tags", tag, stores });
+  res.render("tags", { tags, title: "Tags", tag, stores });
 };
 
 exports.searchStores = async (req, res) => {

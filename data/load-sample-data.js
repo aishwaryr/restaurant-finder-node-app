@@ -1,3 +1,4 @@
+// require("dotenv").config({ path: `${__dirname}/../variables.env.now` });
 require("dotenv").config({ path: `${__dirname}/../variables.env` });
 const fs = require("fs");
 
