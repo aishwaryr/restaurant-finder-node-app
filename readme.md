@@ -1,3 +1,7 @@
+## Live Demo
+https://food-store-finder-cnncbxknko.now.sh/ <br />
+
+
 ## To start
 
 npm install<br />
